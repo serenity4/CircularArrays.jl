@@ -52,6 +52,7 @@ Base.IndexStyle(::Type{<:CircularVector}) = IndexLinear()
 @inline Base.setindex!(arr::CircularArray{T,N,A}, v, I::Vararg{<:Int,N}) where {T,N,A} = @inbounds setindex!(arr.data, v, mod.(I, axes(arr.data))...)
 
 @inline Base.size(arr::CircularArray) = size(arr.data)
+@inline Base.resize!(arr::CircularArray, nl::Integer) = resize!(arr.data, nl)
 @inline Base.axes(arr::CircularArray) = axes(arr.data)
 @inline Base.parent(arr::CircularArray) = arr.data
 
